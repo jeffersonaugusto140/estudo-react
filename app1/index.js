@@ -1,51 +1,27 @@
-import React from 'react';
-import { Text, View, Alert, AppRegistry, Image, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet } from 'react-native';
 
-const frases = [
-    'Frase -001',
-    'Frase -002',
-    'Frase -003',
-    'Frase -004',
-    'Frase -005',
-]
-
-const novaFrase = () => {
-    const n = Math.floor(Math.random() * 4);
-    Alert.alert(frases[n]);
-};
-
-const Estilos = {
-    main:{
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    btn: {
-        paddingVertical: 10,
-        paddingHorizontal: 40,
-        backgroundColor: 'green',
-        marginTop: 20
-    },
-    txt: {
-        fontSize: 16,
-        color: 'white',
-        fontWeight: 'bold'
+class CustomCmp extends Component {
+    render() {
+        return (
+            <View>
+                <Text>
+                    {this.props.p1}
+            </Text>
+                <Text>
+                    {this.props.p2}
+            </Text>
+            </View>
+        );
     }
 }
 
-const App = () => {
-    const { main, btn, txt } = Estilos;
-    return (
-        <View style={ main }>
-           <Image source={ require('./img/logo.png') }/>
-           <TouchableOpacity onPress={novaFrase} style={ btn }>
-               <Text style={txt}>
-                   Nova frase
-               </Text>
-           </TouchableOpacity>
-        </View>
-    );
-};
+class App1 extends Component {
+    render() {
+        return (
+            <CustomCmp p1='AAAA' p2='BBBB'></CustomCmp>
+        )
+    }
+}
 
-AppRegistry.registerComponent('app1', () => App);
+AppRegistry.registerComponent('app1', () => App1);
