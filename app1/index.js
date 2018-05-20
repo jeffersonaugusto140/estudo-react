@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, Alert, Button, View, StyleSheet } from 'react-native';
-
-class CustomCmp extends Component {
-    render() {
-        return (
-            <View>
-                <Text>
-                    {this.props.p1}
-                </Text>
-            </View>
-        );
-    }
-}
+import { AppRegistry, Text, Button, View, StyleSheet } from 'react-native';
+import Top from './components/jokenpo/top';
+import Icone from './components/jokenpo/icone';
 
 class App1 extends Component {
     constructor(props) {
@@ -24,30 +14,39 @@ class App1 extends Component {
         };
     }
 
-    styleBtn = {
+    styles = StyleSheet.create({
+        middle: {
+            justifyContent: 'center',
+            flexDirection: 'row'
+        },
+        resultado: {
+            fontSize: 18,
+            color: 'red',
+            fontWeight: 'bold'
+        },
         btn: {
             justifyContent: 'space-around',
             alignItems: 'flex-start',
             flexDirection: 'row',
-            marginBottom: 20
+            marginBottom: 20,
+            marginTop: 10
         }
-    }
+    })
 
     jokenpo(value) {
-        let cpu = this.state.values[Math.floor(Math.random() * 3)];
+        const cpu = this.state.values[Math.floor(Math.random() * 3)];
         let res = '';
 
-        userWin = (user, cpu, values) => {
-            let pedra = values[0];
-            let papel = values[1];
-            let tesoura = values[2];
+        const userWin = (user, computer, values) => {
+            const pedra = values[0];
+            const papel = values[1];
+            const tesoura = values[2];
 
-            ret = (user === pedra && cpu === tesoura) ||
-                (user === papel && cpu === pedra) ||
-                (user === tesoura && cpu === papel);
+            const ret = (user === pedra && computer === tesoura) ||
+                (user === papel && computer === pedra) ||
+                (user === tesoura && computer === papel);
 
             return ret;
-
         };
 
         if (cpu === value) {
@@ -69,14 +68,38 @@ class App1 extends Component {
     render() {
         return (
             <View>
-                <View style={this.styleBtn.btn}>
-                    <Button title={this.state.values[0]} onPress={() => { this.jokenpo(this.state.values[0]); }} />
-                    <Button title={this.state.values[1]} onPress={() => { this.jokenpo(this.state.values[1]); }} />
-                    <Button title={this.state.values[2]} onPress={() => { this.jokenpo(this.state.values[2]); }} />
+                <Top />
+                <View style={this.styles.btn}>
+                    <Button
+                        title={this.state.values[0]} 
+                        onPress={() => { this.jokenpo(this.state.values[0]); }}
+                    />
+                    <Button 
+                        title={this.state.values[1]} 
+                        onPress={() => { this.jokenpo(this.state.values[1]); }}
+                    />
+                    <Button 
+                        title={this.state.values[2]} 
+                        onPress={() => { this.jokenpo(this.state.values[2]); }}
+                    />
                 </View>
-                <Text> User value: {this.state.userValue} </Text>
-                <Text> CPU value: {this.state.cpuValue} </Text>
-                <Text> Resultado: {this.state.resultado} </Text>
+                <View>
+                    <View style={this.styles.middle}>
+                        <Text style={this.styles.resultado}> {this.state.resultado} </Text>
+                    </View>
+                    <View style={this.styles.middle}>
+                        <Icone 
+                            escolha={this.state.userValue} player="Usuário" 
+                            values={this.state.values} 
+                        />
+                    </View>
+                    <View style={this.styles.middle}>
+                        <Icone 
+                            escolha={this.state.cpuValue} player="CPU" 
+                            values={this.state.values} 
+                        />
+                    </View>
+                </View>
             </View>
         );
     }
