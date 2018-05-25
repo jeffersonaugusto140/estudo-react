@@ -11,9 +11,6 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'white'
     },
-    viewImage: {
-        fontSize: 16
-    },
     viewItems: {
         marginLeft: 20,
         flex: 1
@@ -38,12 +35,12 @@ export default class Item extends Component {
 
     render() {
         const { foto, titulo, valor, local_anuncio, data_publicacao } = this.props.itemProps;
-        const { viewContainer, viewItems, viewImage, stImage, stTitulo, stValor } = styles;
+        const { viewContainer, viewItems, stImage, stTitulo, stValor } = styles;
         console.log('viewContainer');
         console.log(viewContainer);
         return (
             <View style={viewContainer}>
-                <View style={viewImage}>
+                <View>
                     <Image style={stImage} source={{ uri: foto }} />
                 </View>
                 <View style={viewItems}>
