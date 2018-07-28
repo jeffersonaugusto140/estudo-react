@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    Image
+    Image,
+    TouchableHighlight
 } from 'react-native';
 
 import BarraNavegacao from './../common/BarraNavegacao';
@@ -40,7 +41,14 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.viewMenu}>
                     <View style={styles.viewMenuInto}>
-                        <Image style={styles.stImg} source={imgMenuCliente} />
+                        <TouchableHighlight
+                            underlayColor={''}
+                            onPress={() => {
+                                this.props.navigator.push({ id: 'clientes' });
+                            }}
+                        >
+                            <Image style={styles.stImg} source={imgMenuCliente} />
+                        </TouchableHighlight>
                         <Image style={styles.stImg} source={imgMenuContato} />
                     </View>
                     <View style={styles.viewMenuInto}>

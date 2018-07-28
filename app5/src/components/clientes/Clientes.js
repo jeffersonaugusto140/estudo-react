@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 export default class Home extends Component {
     render() {
         return (
-            <View>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <BarraNavegacao backgroundColor='orange' />
                 <View style={styles.detalheCliente}>
                     <Image source={imgDetalheCliente} />
